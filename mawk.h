@@ -52,6 +52,7 @@ the GNU General Public License, version 2, 1991.
 
 #include  "nstd.h"
 #include <stdio.h>
+#include <unistd.h>
 #include "types.h"
 
 #ifdef   DEBUG
@@ -145,7 +146,7 @@ void  PROTO( DB_cell_destroy, (CELL *) ) ;
 void  PROTO( overflow, (char *, unsigned) ) ;
 void  PROTO( rt_overflow, (char *, unsigned) ) ;
 void  PROTO( rt_error, ( char *, ...) ) ;
-void  PROTO( mawk_exit, (int) ) ;
+void  PROTO( mawk_exit, (int) ) __attribute__ ((noreturn)) ;
 void PROTO( da, (INST *, FILE *)) ;
 char *PROTO( str_str, (char*, char*, unsigned) ) ;
 char *PROTO( rm_escape, (char *) ) ;
@@ -153,16 +154,13 @@ char *PROTO( re_pos_match, (char *, PTR, unsigned *) ) ;
 int   PROTO( binmode, (void)) ;
 
 
-int   PROTO( close, (int) ) ;
-int   PROTO( read, (int , PTR, unsigned) ) ;
-
 void PROTO ( parse, (void) ) ;
 int  PROTO ( yylex, (void) ) ;
 int  PROTO( yyparse, (void) ) ;
 void PROTO( yyerror, (char *) ) ;
 void PROTO( scan_cleanup, (void)) ;
 
-void PROTO( bozo, (char *) ) ;
+void PROTO( bozo, (char *) ) __attribute__ ((noreturn));
 void PROTO( errmsg , (int, char*, ...) ) ;
 void PROTO( compile_error, ( char *, ...) ) ;
 

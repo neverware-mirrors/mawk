@@ -1,3 +1,28 @@
+mawk (1.3.3-8) unstable; urgency=low
+
+  * debian/rules (build): compile with -O1 on hppa to work around probable
+    compiler bug.  Thanks to LaMont Jones <lamont@ia.mmjgroup.com>.
+
+ -- James Troup <james@nocrew.org>  Wed, 18 Jul 2001 20:40:37 +0100
+
+mawk (1.3.3-7) unstable; urgency=low
+
+  * mawk.h: remove bogus redefinition of read() and close() and #include
+    <unistd.h> instead, thanks to LaMont Jones <lamont@ia.mmjgroup.com>.
+    Closes: #104124
+
+ -- James Troup <james@nocrew.org>  Tue, 10 Jul 2001 03:09:24 +0100
+
+mawk (1.3.3-6) unstable; urgency=low
+
+  * debian/control (Maintainer): fixed to be me. 
+  * debian/changelog: remove add-log-mailing-address.
+  * debian/rules: rewritten.
+  * debian/control (Standards-Version): bump to 3.5.5.0.
+  * Half hearted attempt at -Wall cleaning of the code.
+
+ -- James Troup <james@nocrew.org>  Mon, 25 Jun 2001 05:33:51 +0100
+
 mawk (1.3.3-5) unstable; urgency=low
 
   * debian/postinst: manpages are in /usr/share/man now; forgot to update
@@ -131,5 +156,4 @@ mawk (1.2.1-1) unstable; urgency=low
 
 Local variables:
 mode: debian-changelog                                                       
-add-log-mailing-address: "awkmaint@nocrew.org"
 End:                                                                    
