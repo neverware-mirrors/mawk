@@ -1,3 +1,69 @@
+mawk (1.3.3-11) unstable; urgency=low
+
+  * 08_fix-for-gcc3.3.dpatch: grossly hack configure to work around
+    gcc-3.3 providing a builtin log() function which broke the configure
+    tests.  Thanks to Daniel Schepler <schepler@math.berkeley.edu> for the
+    report.  Closes: #195371
+
+  * debian/control: add build-depends on gcc (>= 3:3.3-1) for hppa.
+  * debian/rules: remove de-optimization hack for hppa.  Thanks to LaMont
+    Jones <lamont@smallone.fc.hp.com> and Matthias Klose
+    <doko@cs.tu-berlin.de>.  Closes: #105816
+
+  * debian/control (Standards-Version): bump to 3.5.10.0.
+
+ -- James Troup <james@nocrew.org>  Fri, 30 May 2003 15:24:50 +0100
+
+mawk (1.3.3-10) unstable; urgency=low
+
+  * Move to dpatch; existing non-debian/ changes split into
+    01_error-on-full-fs, 02_fix-examples, 03_read-and-close-redefinition,
+    04_mawk.1-fix-pi and 05_-Wall-fixes.
+  * debian/rules: include /usr/share/dpatch/dpatch.make.
+  * debian/rules (build): depend on patch-stamp.
+  * debian/rules (clean): depend on unpatch.  Remove debian/patched.
+  * debian/control (Build-Depends): add dpatch.
+
+  * debian/rules: update copyright and use install_foo convenience
+    variables.
+  * debian/copyright: update copyright.
+
+  * debian/control (Standards-Version): bump to 3.5.9.0.
+  * debian/postinst, debian/prerm: no longer do /usr/doc symlinks.
+
+  * debian/prerm: use set -e rather than #!/bin/sh -e.
+
+  * 06_parse.y-semicolons.dpatch: new patch to fix missing semi-colons
+    that upset recent versions of bison.  Thanks to Paul Eggert
+    <eggert@twinsun.com>.  Closes: #170973
+  * debian/control (Build-Depends): add bison.
+  * debian/rules (clean): remove parse.c and parse.h so they're not
+    included in the .diff.gz.
+
+  * 07_mawktest-check-devfull: new patch to conditionalize the write error
+    tests on the existence of /dev/full since apparently some systems
+    don't have it.  Requested by Marcus.Brinkmann@ruhr-uni-bochum.de.
+    Closes: #51875
+
+  * debian/postinst: demote mawk to priority 5 so that gawk will be
+    selected by default.  [mawk isn't being actively maintained upstream
+    and has both long-standing bugs and isn't feature-complete WRT POSIX
+    at least.]
+
+ -- James Troup <james@nocrew.org>  Thu, 10 Apr 2003 02:22:27 +0100
+
+mawk (1.3.3-9) unstable; urgency=low
+
+  * debian/control: capitalize POSIX, thanks to Matt Zimmerman
+    <mdz@debian.org>.  Closes: #125120
+  * debian/changelog: remove obsolete local variables.
+  * man/mawk.1: add a macro provided by Colin Watson <cjwatson@debian.org>
+    to force PI to be displayed as "pi" (rather than 'n') when processed
+    by nroff.  Closes: #103699
+  * debian/control (Standards-Version): update to 3.5.6.1.
+
+ -- James Troup <james@nocrew.org>  Fri,  9 Aug 2002 15:04:23 +0100
+
 mawk (1.3.3-8) unstable; urgency=low
 
   * debian/rules (build): compile with -O1 on hppa to work around probable
@@ -15,7 +81,7 @@ mawk (1.3.3-7) unstable; urgency=low
 
 mawk (1.3.3-6) unstable; urgency=low
 
-  * debian/control (Maintainer): fixed to be me. 
+  * debian/control (Maintainer): fixed to be me.
   * debian/changelog: remove add-log-mailing-address.
   * debian/rules: rewritten.
   * debian/control (Standards-Version): bump to 3.5.5.0.
@@ -28,7 +94,7 @@ mawk (1.3.3-5) unstable; urgency=low
   * debian/postinst: manpages are in /usr/share/man now; forgot to update
     the arguments to update-alternatives.  Thanks to Malcolm Parsons
     <malcolm@ivywell.screaming.net> for noticing.  [#54440]
-  
+
  -- James Troup <awkmaint@nocrew.org>  Sun,  9 Jan 2000 16:54:14 +0000
 
 mawk (1.3.3-4) unstable; urgency=low
@@ -58,7 +124,7 @@ mawk (1.3.3-3) unstable; urgency=low
     output file.
   * test/mawktest: Added checking for correct handling of write errors on
     full disks.
-  
+
   * The remaining entries are a patch from Edward Betts
     <edward@debian.org>. [#36011]
   * examples/hical: use /bin/echo to avoid bash's builtin.
@@ -153,7 +219,3 @@ mawk (1.2.1-1) unstable; urgency=low
   * initial release - ELF package
 
  -- Chris Fearnley <cjf@netaxs.com>  Sun, 3 Dec 1995 00:48:23 -0400
-
-Local variables:
-mode: debian-changelog                                                       
-End:                                                                    

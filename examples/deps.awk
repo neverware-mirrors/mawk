@@ -1,4 +1,3 @@
-#!/usr/bin/mawk -f
 
 # find include dependencies in C source
 #

@@ -1,4 +1,3 @@
-#!/usr/bin/mawk -f
 
 # remove C comments  from a list of files
 # using a comment as the record separator

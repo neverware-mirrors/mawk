@@ -61,13 +61,16 @@ the GNU General Public License, version 2, 1991.
 #include "memory.h"
 #include "fin.h"
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
+static FILE *PROTO(tfopen, (char *, char *)) ;
+static void PROTO(efflush, (FILE*)) ;
+static void PROTO(add_to_child_list, (int, int)) ;
+static struct child *PROTO(remove_from_child_list, (int)) ;
+extern int PROTO(isatty, (int)) ;
 
 #ifdef	V7
 #include  <sgtty.h>		/* defines FIOCLEX */
 #endif
+
 
 #ifndef	 NO_FCNTL_H
 
@@ -100,14 +103,6 @@ FILE_NODE ;
 
 static FILE_NODE *file_list ;
 
-/* Prototypes for local functions */
-
-static FILE *PROTO(tfopen, (char *, char *)) ;
-static void PROTO(efflush, (FILE*)) ;
-static void PROTO(add_to_child_list, (int, int)) ;
-static struct child *PROTO(remove_from_child_list, (int)) ;
-extern int PROTO(isatty, (int)) ;
-static void PROTO(close_error, (FILE_NODE *p));
 
 /* find a file on file_list */
 PTR
@@ -191,7 +186,7 @@ file_find(sval, type)
       if (strcmp(name, p->name->str) == 0 &&
 	  (p->type == type ||
       /* no distinction between F_APPEND and F_TRUNC here */
-	   (p->type >= F_APPEND && type >= F_APPEND)))
+	   p->type >= F_APPEND && type >= F_APPEND))
 
       {
 	 /* found */
@@ -238,28 +233,16 @@ file_close(sval)
       if (strcmp(name, p->name->str) == 0)
       {
 	 /* found */
-
-         /* Remove it from the list first because we might be called 
-            again if an error occurs leading to an infinite loop. 
-
-            Note that we don't have to consider the list corruption 
-            caused by a recursive call because it will never return. */
-
-	 q->link = p->link ;
-         file_list = dummy.link ;   /* maybe it was the first file */
-         
-         switch (p->type)
+	 switch (p->type)
 	 {
 	    case F_TRUNC:
 	    case F_APPEND:
-	       if( fclose((FILE *) p->ptr) != 0 )
-		  close_error(p) ;
+	       fclose((FILE *) p->ptr) ;
 	       retval = 0 ;
 	       break ;
 
 	    case PIPE_OUT:
-	       if( fclose((FILE *) p->ptr) != 0 )
-	       	  close_error(p) ;
+	       fclose((FILE *) p->ptr) ;
 
 #if  HAVE_REAL_PIPES
 	       retval = wait_for(p->pid) ;
@@ -291,8 +274,8 @@ file_close(sval)
 	 }
 
 	 free_STRING(p->name) ;
-         hold = p ;
-	 p = p->link ;
+	 hold = p ;
+	 q->link = p = p->link ;
 	 ZFREE(hold) ;
       }
       else
@@ -301,6 +284,7 @@ file_close(sval)
       }
    }
 
+   file_list = dummy.link ;
    return retval ;
 }
 
@@ -380,14 +364,7 @@ close_out_pipes()
    {
       if (IS_OUTPUT(p->type))
       {
-	 if( fclose((FILE *) p->ptr) != 0 )
-         {
-            /* if another error occurs we do not want to be called 
-               for the same file again */
-
-            file_list = p->link ;
-	    close_error(p) ;
-         }
+	 fclose((FILE *) p->ptr) ;   
 	 if (p->type == PIPE_OUT) wait_for(p->pid) ; 
       }
 
@@ -420,8 +397,7 @@ close_fake_pipes()
    {
       if (p->type == PIPE_OUT)
       {
-	 if( fclose(p->ptr) != 0 )
-	    close_error(p) ;
+	 fclose(p->ptr) ;
 	 close_fake_outpipe(p->name->str, p->pid) ;
       }
       p = p->link ;
@@ -553,7 +529,7 @@ wait_for(pid)
       add_to_child_list(id, exit_status) ;
    }
    /* see if an earlier wait() caught our child */
-   else if ((p = remove_from_child_list(pid)))
+   else if (p = remove_from_child_list(pid))
    {
       exit_status = p->exit_status ;
       ZFREE(p) ;
@@ -587,24 +563,18 @@ void
 set_stderr()   /* and stdout */
 {
    FILE_NODE *p, *q ; 
-
-   /* We insert stderr first to get it at the end of the list. This is 
-      needed because we want to output errors encountered on closing 
-      stdout. */
    
-   q = ZMALLOC(FILE_NODE);
-   q->link = (FILE_NODE*) 0 ;
-   q->type = F_TRUNC ;
-   q->name = new_STRING("/dev/stderr") ;
-   q->ptr = (PTR) stderr ;
-
    p = ZMALLOC(FILE_NODE) ;
-   p->link = q;
+   p->link = (FILE_NODE*) 0 ;
    p->type = F_TRUNC ;
    p->name = new_STRING("/dev/stdout") ;
    p->ptr = (PTR) stdout ;
-
-   file_list = p ;
+   q = ZMALLOC(FILE_NODE);
+   q->link = p ;
+   q->type = F_TRUNC ;
+   q->name = new_STRING("/dev/stderr") ;
+   q->ptr = (PTR) stderr ;
+   file_list = q ;
 }
 
 /* fopen() but no buffering to ttys */
@@ -649,13 +619,3 @@ stdout_init()
    }
 }
 #endif /* MSDOS */
-
-/* An error occured closing the file referred to by P. We tell the 
-   user and terminate the program. */
-
-static void close_error(p)
-   FILE_NODE *p ;
-{
-   errmsg(errno, "close failed on file %s", p->name->str) ;
-   mawk_exit(2) ;
-}

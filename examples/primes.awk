@@ -1,4 +1,3 @@
-#!/usr/bin/mawk -f
 
 # primes.awk
 #

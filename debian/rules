@@ -2,34 +2,33 @@
 # debian/rules file - for Mawk (1.3.3)
 # Based on sample debian/rules file - for GNU Hello (1.3).
 # Copyright 1994,1995 by Ian Jackson.
-# Copyright 2001 James Troup
+# Copyright 2001-2003 James Troup
 # I hereby give you perpetual unlimited permission to copy,
 # modify and relicense this file, provided that you do not remove
 # my name from the file itself.  (I assert my moral right of
 # paternity under the Copyright, Designs and Patents Act 1988.)
 # This file may have to be extensively modified
 
-DEB_BUILD_ARCH := $(shell dpkg --print-installation-architecture)
-CFLAGS=-g -Wall
-ifneq (,$(findstring hppa,$(DEB_BUILD_ARCH)))
-CFLAGS += -O1
-else
-CFLAGS += -O2
-endif
+install_dir=install -d -m 755
+install_file=install -m 644
+install_script=install -m 755
+install_binary=install -m 755 -s
 
-build:
+include /usr/share/dpatch/dpatch.make
+
+build: patch-stamp
 	$(checkdir)
 	chmod 755 configure test/mawktest test/fpe_test
 	./configure
-	$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
+	$(MAKE) CC="$(CC)" CFLAGS="-g -Wall -O2" LDFLAGS="$(LDFLAGS)"
 	touch build
 
-clean:
+clean: unpatch
 	$(checkdir)
-	-rm -f build
+	-rm -f build parse.c parse.h
 	-$(MAKE) -i clean || $(MAKE) -f Makefile.in distclean
 	-rm -f config.cache config.h config.log config.status Makefile man/index.db
-	-rm -rf debian/tmp debian/substvars debian/files*
+	-rm -rf debian/tmp debian/substvars debian/files* debian/patched
 	find . -name \*~ | xargs rm -vf
 
 binary-indep:
@@ -38,27 +37,27 @@ binary-arch:	checkroot build
 	$(checkdir)
 	rm -rf debian/tmp
 
-	install -d debian/tmp/DEBIAN
-	install -m 755 debian/prerm debian/postinst debian/tmp/DEBIAN/
+	$(install_dir) debian/tmp/DEBIAN
+	$(install_script) debian/prerm debian/postinst debian/tmp/DEBIAN/
 
-	install -d debian/tmp/usr/bin
-	install -s -m 755 mawk debian/tmp/usr/bin/
+	$(install_dir) debian/tmp/usr/bin
+	$(install_binary) mawk debian/tmp/usr/bin/
 
-	install -d debian/tmp/usr/share/man/man1
-	install -m 644 man/mawk.1  debian/tmp/usr/share/man/man1/
+	$(install_dir) debian/tmp/usr/share/man/man1
+	$(install_file) man/mawk.1  debian/tmp/usr/share/man/man1/
 	gzip -9v debian/tmp/usr/share/man/man1/mawk.1
 
-	install -d debian/tmp/usr/share/doc/mawk/
-	install -m 644 CHANGES debian/tmp/usr/share/doc/mawk/changelog
-	install -m 644 debian/changelog debian/tmp/usr/share/doc/mawk/changelog.Debian
-	install -m 644 README ACKNOWLEDGMENT debian/tmp/usr/share/doc/mawk/
+	$(install_dir) debian/tmp/usr/share/doc/mawk/
+	$(install_file) CHANGES debian/tmp/usr/share/doc/mawk/changelog
+	$(install_file) debian/changelog debian/tmp/usr/share/doc/mawk/changelog.Debian
+	$(install_file) README ACKNOWLEDGMENT debian/tmp/usr/share/doc/mawk/
 	gzip  -9v debian/tmp/usr/share/doc/mawk/*
 
-	install -d debian/tmp/usr/share/doc/mawk/examples
-	install -m 644 examples/* debian/tmp/usr/share/doc/mawk/examples/
+	$(install_dir) debian/tmp/usr/share/doc/mawk/examples
+	$(install_file) examples/* debian/tmp/usr/share/doc/mawk/examples/
 	gzip -9v debian/tmp/usr/share/doc/mawk/examples/*
 
-	install -m 644 debian/copyright debian/tmp/usr/share/doc/mawk/
+	$(install_file) debian/copyright debian/tmp/usr/share/doc/mawk/
 
 	dpkg-shlibdeps mawk
 	dpkg-gencontrol -isp

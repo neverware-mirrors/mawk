@@ -138,8 +138,6 @@ re_uncompile(m)
       if (p->re == m)  return p->sval->str ;
 #ifdef	DEBUG
    bozo("non compiled machine") ;
-#else
-   return NULL;
 #endif
 }
 
@@ -242,7 +240,7 @@ repl_destroy(cp)
       p = (STRING **) cp->ptr ;
       for (cnt = cp->vcnt; cnt; cnt--)
       {
-	 if (*p) { free_STRING(*p) ; }
+	 if (*p)  free_STRING(*p) ;
 	 p++ ;
       }
       zfree(cp->ptr, cp->vcnt * sizeof(STRING *)) ;
@@ -367,8 +365,6 @@ repl_uncompile(cp)
 
 #if  DEBUG
    bozo("unable to uncompile an repl") ;
-#else
-   return NULL;
 #endif
 }
 

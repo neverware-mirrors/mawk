@@ -1,4 +1,3 @@
-#!/usr/bin/awk -f
 
 # parse a C declaration by recursive descent
 # based on a C program in KR ANSI edition
@@ -138,3 +137,7 @@ BEGIN { id = "[_A-Za-z][_A-Za-z0-9]*"
     }
 
 }
+
+
+
+

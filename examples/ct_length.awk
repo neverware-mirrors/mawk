@@ -1,4 +1,4 @@
-#!/usr/bin/mawk -f
+#!/usr/local/bin/mawk -f
 
 #  ct_length.awk
 #

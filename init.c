@@ -69,7 +69,6 @@ the GNU General Public License, version 2, 1991.
 #include "init.h"
 #include "bi_vars.h"
 #include "field.h"
-#include <stdlib.h>
 
 #ifdef MSDOS
 #include <fcntl.h>
@@ -371,7 +370,7 @@ load_environ(ENV)
 
    while (*p)
    {
-      if ((s = strchr(*p, '=')))	/* shouldn't fail */
+      if (s = strchr(*p, '='))	/* shouldn't fail */
       {
 	 int len = s - *p ;
 	 c.ptr = (PTR) new_STRING0(len) ;
