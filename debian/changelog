@@ -1,3 +1,23 @@
+mawk (1.3.3-2) frozen unstable; urgency=low
+
+  * debian/control (Maintainer): New maintainer.  However, I'm just an
+    interim real maintainer, the package will go back to Chris as soon as
+    he's ready.
+  * debian/control (Standards-Version): Upgraded to 2.4.1.0.
+  * debian/control (Depends): Made a Pre-Depends. [#20601]
+  * debian/copyright: corrected URL of upstream source. [#20603]
+  * debian/copyright: updated the address of the FSF.
+  * Pristine upstream source.
+
+ -- James Troup <awkmaint@nocrew.org>  Thu, 30 Apr 1998 16:02:45 +0200
+
+mawk (1.3.3-1.1) unstable; urgency=low
+
+  * Non-maintainer release.
+  * Rebuilt under libc6 [#11707].
+
+ -- James Troup <jjtroup@comp.brad.ac.uk>  Fri,  3 Oct 1997 20:19:36 +0200
+
 mawk (1.3.3-1) unstable; urgency=low
 
   * Upgrade to latest upstream source (very minor bug fix)
@@ -65,4 +85,5 @@ mawk (1.2.1-1) unstable; urgency=low
 
 Local variables:
 mode: debian-changelog                                                       
+add-log-mailing-address: "awkmaint@nocrew.org"
 End:                                                                    

@@ -40,7 +40,7 @@ clean:
 	-rm -f build
 	-$(MAKE) -i clean || $(MAKE) -f Makefile.in distclean
 	-rm -f config.cache config.h config.log config.status Makefile man/index.db
-	-rm -rf debian/tmp debian*~ debian/{substvars,files,files.new}
+	-rm -rf debian/tmp debian/*~ debian/{substvars,files,files.new}
 
 binary-indep:  checkroot build
 	$(checkdir)

@@ -1,13 +1,13 @@
 Source: mawk
 Section: base
 Priority: required
-Maintainer: Chris Fearnley <cjf@netaxs.com>
-Standards-Version: 2.1.1.0
+Maintainer: James Troup <awkmaint@nocrew.org>
+Standards-Version: 2.4.1.0
 
 Package: mawk
 Architecture: any
 Provides: awk
-Depends: ${shlibs:Depends}
+Pre-Depends: ${shlibs:Depends}
 Description: a pattern scanning and text processing language
  Mawk is an interpreter for the AWK Programming Language. The AWK
  language is useful for manipulation of data files, text retrieval and
