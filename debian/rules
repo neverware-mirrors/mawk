@@ -14,7 +14,7 @@
 
 package=mawk
 # The version of the package (for example, `19.28').
-version=1.3.2
+version=1.3.3
 # The Debian revision of the package (for example, `2').
 debian=1
 
@@ -72,12 +72,12 @@ binary-arch:	checkroot build
 
 binary: binary-indep binary-arch
 
-dist-full: checkroot
-	dpkg-buildpackage -uc -us -sa
+dist-full:
+	dpkg-buildpackage -rsudo -uc -us -sa
 	@echo "You may want to run \"debian/rules clean\" to clean up after the build"
 
-dist-update: checkroot
-	dpkg-buildpackage -uc -us -sd
+dist-update:
+	dpkg-buildpackage -rsudo -uc -us -sd
 	@echo "You may want to run \"debian/rules clean\" to clean up after the build"
 
 dist: dist-full

@@ -1,6 +1,6 @@
 Source: mawk
 Section: base
-Priority: important
+Priority: required
 Maintainer: Chris Fearnley <cjf@netaxs.com>
 Standards-Version: 2.1.1.0
 
