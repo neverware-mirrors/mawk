@@ -1,0 +1,28 @@
+build_command =
+	"/home/james/bin/aegis-build";
+
+link_integration_directory = true;
+create_symlinks_before_build = true;
+
+history_create_command =
+	"fhist ${quote ${basename $input}} -create -cu -i ${quote $input} \
+-p ${quote ${dirname $history}} -r";
+
+history_get_command =
+	"fhist ${quote ${basename $history}} -e ${quote $e} \
+-o ${quote $output} -p ${quote ${dirname $history}}";
+
+history_put_command =
+	"fhist ${quote ${basename $input}} -create -cu -i ${quote $input} \
+-p ${quote ${dirname $history}} -r";
+
+history_query_command =
+	"fhist ${quote ${basename $history}} -l 0 \
+-p ${quote ${dirname $history}} -q";
+
+diff_command =
+	"set +e; diff -p -U10 ${quote $original} ${quote $input} > ${quote $output}; test $? -le 1";
+
+merge_command =
+	"fmerge ${quote $original} ${quote $MostRecent} ${quote $input} \
+-o ${quote $output} -c /dev/null";

@@ -30,6 +30,7 @@ LDFLAGS =
 build:
 	$(checkdir)
 	@echo "Building the binaries ..."
+	chmod 755 configure test/mawktest test/fpe_test
 	./configure
 	$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
 	touch build
@@ -54,18 +55,19 @@ binary-arch:	checkroot build
 	rm -rf debian/tmp
 	$(make_directory) debian/tmp/DEBIAN
 	$(make_directory) debian/tmp/usr/bin
-	$(make_directory) debian/tmp/usr/man/man1
-	$(make_directory) debian/tmp/usr/doc/$(package)/examples
+	$(make_directory) debian/tmp/usr/share/man/man1
+	$(make_directory) debian/tmp/usr/share/doc/$(package)/examples
 	$(install_script) debian/{prerm,postinst} debian/tmp/DEBIAN/
 	$(install_binary) mawk debian/tmp/usr/bin/
-	$(install_files) CHANGES debian/tmp/usr/doc/$(package)/changelog
-	$(install_files) debian/changelog debian/tmp/usr/doc/$(package)/changelog.Debian
-	$(install_files) man/mawk.1  debian/tmp/usr/man/man1/
-	$(install_files) debian/copyright debian/tmp/usr/doc/$(package)/
-	$(install_files) examples/* debian/tmp/usr/doc/$(package)/examples/
-	gzip -9 debian/tmp/usr/{man/man1/mawk.1,doc/$(package)/{changelog,changelog.Debian,examples/*}}
-	dpkg-shlibdeps mawk; dpkg-gencontrol
+	$(install_files) CHANGES debian/tmp/usr/share/doc/$(package)/changelog
+	$(install_files) debian/changelog debian/tmp/usr/share/doc/$(package)/changelog.Debian
+	$(install_files) man/mawk.1  debian/tmp/usr/share/man/man1/
+	$(install_files) debian/copyright debian/tmp/usr/share/doc/$(package)/
+	$(install_files) examples/* debian/tmp/usr/share/doc/$(package)/examples/
+	gzip -9 debian/tmp/usr/share/{man/man1/mawk.1,doc/$(package)/{changelog,changelog.Debian,examples/*}}
+	dpkg-shlibdeps mawk; dpkg-gencontrol -isp
 	chown -R root.root debian/tmp
+	chmod -R go=rX debian/tmp
 	dpkg --build debian/tmp ..
 
 # Below here is fairly generic really.
