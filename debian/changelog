@@ -1,0 +1,60 @@
+mawk (1.3.2-3) unstable; urgency=low
+
+  * I accidently built the last mawk from my hacked source :(
+    This version reverts to the pristine upstream (but fails to
+    completely close Bug #4293 -- which was the point of the dubious
+    hack found in mawk-1.3.2-2).  Sorry.  Glad I noticed so soon!
+
+ -- Chris Fearnley <cjf@netaxs.com>  Sun, 3 Nov 1996 22:57:45 -0500
+
+mawk (1.3.2-2) unstable; urgency=low
+
+  * Fixed postinst to install awk and nawk man pages correctly (bug#5001)
+
+ -- Chris Fearnley <cjf@netaxs.com>  Sun, 3 Nov 1996 22:28:56 -0500
+
+mawk (1.3.2-1) unstable; urgency=low
+
+  * upgrade to latest upstream source (solves bug #4293)
+  * development environment: gcc-2.7.2.1-1, libc5-5.2.18-10,
+    libc5-dev-5.2.18-10, binutils-2.6-2, and make-3.74-12
+
+ -- Chris Fearnley <cjf@netaxs.com>  Sat, 28 Sep 1996 22:58:42 -0400
+
+mawk (1.3.1-1) unstable; urgency=low
+
+  * upgrade to latest upstream source
+  * upgrade packaging to Debian Standards-Version 2.1.1.0
+  * i386 development environment: gcc-2.7.2.1-1, libc5-5.2.18-10,
+    libc5-dev-5.2.18-10, binutils-2.6-2, and make-3.74-12
+
+ -- Chris Fearnley <cjf@netaxs.com>  Wed, 18 Sep 1996 14:24:31 -0400
+
+mawk (1.2.2-2) unstable; urgency=low
+
+  * upgrade to latest debian packaging guidelines
+  * provides: awk
+  * mawk is now the default awk/nawk for Debian GNU/Linux
+  * Development environment for i386: gcc-2.7.2-8 libc5-5.2.18-9 make-3.74-12
+  * Section: base ; Priority: important
+
+ -- Chris Fearnley <cjf@netaxs.com>  Wed, 7 Aug 1996 21:51:21 -0400
+
+mawk (1.2.2-1) unstable; urgency=low
+
+  * Upgrade to new upsteam version
+  * Compiled with: gcc-2.7.2-2, binutils-2.6-2, and libc5-5.2.18-1.
+
+ -- Chris Fearnley <cjf@netaxs.com>  Mon, 29 Jan 1996 04:02:39 -0400
+
+mawk (1.2.1-1) unstable; urgency=low
+
+  * added Debian GNU/Linux package maintenance system files
+  * patched Makefile.in to make debianization more flexible
+  * initial release - ELF package
+
+ -- Chris Fearnley <cjf@netaxs.com>  Sun, 3 Dec 1995 00:48:23 -0400
+
+Local variables:
+mode: debian-changelog                                                       
+End:                                                                    
