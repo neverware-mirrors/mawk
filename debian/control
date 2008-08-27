@@ -1,8 +1,8 @@
 Source: mawk
 Section: utils
 Priority: required
-Maintainer: Anibal Monsalve Salazar <anibal@debian.org>
-Build-Depends: dpatch, bison, gcc (>= 3:3.3-1) [hppa]
+Maintainer: Steve Langasek <vorlon@debian.org>
+Build-Depends: dpatch, bison
 Standards-Version: 3.8.0
 
 Package: mawk

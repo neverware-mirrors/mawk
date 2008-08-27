@@ -23,12 +23,15 @@ build: patch-stamp
 	$(MAKE) CC="$(CC)" CFLAGS="-g -Wall -O2" LDFLAGS="$(LDFLAGS)"
 	touch build
 
-clean: unpatch
+clean: clean-patched unpatch
+	-rm -rf debian/patched
+
+clean-patched:
 	$(checkdir)
 	-rm -f build parse.c parse.h
-	-$(MAKE) -i clean || $(MAKE) -f Makefile.in distclean
-	-rm -f config.cache config.h config.log config.status Makefile man/index.db
-	-rm -rf debian/tmp debian/substvars debian/files* debian/patched
+	[ ! -f Makefile ] || make distclean
+	-rm -f man/index.db
+	-rm -rf debian/tmp debian/substvars debian/files*
 	find . -name \*~ | xargs rm -vf
 
 binary-indep:

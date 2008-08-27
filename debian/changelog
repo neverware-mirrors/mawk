@@ -1,3 +1,16 @@
+mawk (1.3.3-13) unstable; urgency=low
+
+  * New maintainer; closes: #496711.
+  * Drop versioned gcc build-dependency, which has been satisfied since
+    before oldstable.
+  * debian/rules: fix up clean target to use a simpler, standard distclean
+    call, fixing a lintian warning.
+  * debian/rules: future-proof the clean target for patch interaction
+    with the build system, moving all the cleaning into a
+    "clean-patched" target that fires before the unpatch target
+
+ -- Steve Langasek <vorlon@debian.org>  Wed, 27 Aug 2008 10:03:33 -0700
+
 mawk (1.3.3-12) unstable; urgency=low
 
   * New maintainer; closes: 496711
