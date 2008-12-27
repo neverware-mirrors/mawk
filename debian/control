@@ -3,6 +3,7 @@ Section: utils
 Priority: required
 Maintainer: Steve Langasek <vorlon@debian.org>
 Build-Depends: dpatch, bison
+Build-Conflicts: byacc
 Standards-Version: 3.8.0
 
 Package: mawk

@@ -1,3 +1,12 @@
+mawk (1.3.3-14) unstable; urgency=low
+
+  * Build-Conflict with byacc, as the current version doesn't appear to be
+    compatible with mawk; though we ought to fix the upstream build rules
+    to not check for byacc first in this case, this is an ok fix for now.
+    Closes: #509832.
+
+ -- Steve Langasek <vorlon@debian.org>  Fri, 26 Dec 2008 16:17:53 -0800
+
 mawk (1.3.3-13) unstable; urgency=low
 
   * New maintainer; closes: #496711.
