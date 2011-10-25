@@ -1,22 +1,5 @@
-#! /bin/sh -e
-## 06_parse.y-semicolons.dpatch by Paul Eggert <eggert@twinsun.com>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Fix missing semicolons in parse.y to keep recent versions of bison happy.
-
-if [ $# -ne 1 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-case "$1" in
-       -patch) patch -f --no-backup-if-mismatch -p1 < $0;;
-       -unpatch) patch -f --no-backup-if-mismatch -R -p1 < $0;;
-	*)
-		echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-		exit 1;;
-esac
-
-exit 0
+Author: Paul Eggert <eggert@twinsun.com>
+Description: Fix missing semicolons in parse.y to keep recent versions of bison happy.
 
 diff -urNad 06.mawk.tmp/parse.y 06.mawk/parse.y
 --- 06.mawk.tmp/parse.y	1995-06-11 23:55:31.000000000 +0100

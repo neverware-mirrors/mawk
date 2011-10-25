@@ -1,22 +1,5 @@
-#! /bin/sh -e
-## 02_fix-examples.dpatch by Edward Betts <edward@debian.org>
-##
-## All lines beginning with `## DP:' are a description of the patch.
-## DP: Fix bang paths and echo usage in examples.
-
-if [ $# -ne 1 ]; then
-    echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-    exit 1
-fi
-case "$1" in
-       -patch) patch -f --no-backup-if-mismatch -p1 < $0;;
-       -unpatch) patch -f --no-backup-if-mismatch -R -p1 < $0;;
-	*)
-		echo >&2 "`basename $0`: script expects -patch|-unpatch as argument"
-		exit 1;;
-esac
-
-exit 0
+Author: Edward Betts <edward@debian.org>
+Description: Fix bang paths and echo usage in examples.
 
 diff -urNad 02.mawk.tmp/examples/ct_length.awk 02.mawk/examples/ct_length.awk
 --- 02.mawk.tmp/examples/ct_length.awk	1993-07-03 19:58:46.000000000 +0100

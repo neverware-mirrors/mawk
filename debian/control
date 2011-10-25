@@ -1,15 +1,18 @@
 Source: mawk
-Section: utils
+Section: interpreters
 Priority: required
 Maintainer: Steve Langasek <vorlon@debian.org>
-Build-Depends: dpatch, bison
+Build-Depends: quilt (>= 0.46-7), bison, debhelper (>= 8.9.4)
 Build-Conflicts: byacc
-Standards-Version: 3.8.2
+Standards-Version: 3.9.2
+Vcs-Bzr: nosmart+http://bzr.debian.org/bzr/users/vorlon/mawk/trunk/
+Vcs-Browser: http://anonscm.debian.org/loggerhead/users/vorlon/mawk/trunk/
 
 Package: mawk
 Architecture: any
 Provides: awk
 Pre-Depends: ${shlibs:Depends}
+Depends: ${misc:Depends}
 Description: a pattern scanning and text processing language
  Mawk is an interpreter for the AWK Programming Language. The AWK
  language is useful for manipulation of data files, text retrieval and

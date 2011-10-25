@@ -1,3 +1,23 @@
+mawk (1.3.3-16) unstable; urgency=low
+
+  * Swap out dpatch in favor of quilt.
+  * Replace debian/patches/08_fix-for-gcc3.3 with debian/patches/autoreconf,
+    which gets us modern autoconf support.
+  * Migrate to dh(1).  This gets us md5sums for the package (Closes: #507315)
+    and support for DEB_BUILD_OPTIONS=nostrip (Closes: #437557).
+  * Only run the mawk_test and fpe_test targets from override_dh_auto_test,
+    so that DEB_BUILD_OPTIONS=nocheck does the right thing.  This should
+    be sufficient to support cross-building, provided nocheck is passed in
+    the cross-build environment (as it should be).  Closes: #285418.
+  * Put mawk in Section: interpreters, along with the other awken.
+    Closes: #442071.
+  * debian/mawk.postinst: drop obsolete upgrade handling of long-gone broken
+    symlinks.
+  * Update to standards-version 3.9.2.
+  * Add Vcs-Bzr/Vcs-Browser fields.
+
+ -- Steve Langasek <vorlon@debian.org>  Tue, 25 Oct 2011 00:47:34 +0000
+
 mawk (1.3.3-15) unstable; urgency=high
 
   * Fix debian/copyright to correctly list the license as GPLv2, not GPLv2
