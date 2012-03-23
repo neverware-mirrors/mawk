@@ -1,3 +1,17 @@
+mawk (1.3.3-17) unstable; urgency=low
+
+  * debian/patches/cross-compile: fix the wrong invocation of AC_CHECK_PROG()
+    that breaks cross-compiler detection.
+  * debian/patches/21_memcpy-to-memmove: use memmove instead of memcpy in
+    FINgets.  Closes: #665383, LP: #955791.
+  * mark mawk Multi-Arch: foreign, to satisfy cross-build-dependencies.
+  * debian/patches/20_overlong-regexps: Do not crash if regexp is too
+    long for our buffer.  Thanks to Ian Jackson <iwj@ubuntu.com>,
+    Jonathan Nieder <jrnieder@gmail.com>.  Closes: #391051, LP: #23494.
+  * add autopkgtest/autodebtest support to run upstream tests.
+
+ -- Steve Langasek <vorlon@debian.org>  Fri, 23 Mar 2012 13:15:00 -0700
+
 mawk (1.3.3-16) unstable; urgency=low
 
   * Swap out dpatch in favor of quilt.

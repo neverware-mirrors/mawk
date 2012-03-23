@@ -10,6 +10,7 @@ Vcs-Browser: http://anonscm.debian.org/loggerhead/users/vorlon/mawk/trunk/
 
 Package: mawk
 Architecture: any
+Multi-Arch: foreign
 Provides: awk
 Pre-Depends: ${shlibs:Depends}
 Depends: ${misc:Depends}

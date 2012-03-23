@@ -2,10 +2,10 @@ Author: Steve Langasek <vorlon@debian.org>
 Description: Run autoconf to get a modern configure script
  This is needed to fix compatibility with recent versions of gcc.
 
-Index: mawk/configure
+Index: mawk-1.3.3/configure
 ===================================================================
---- mawk.orig/configure
-+++ mawk/configure
+--- mawk-1.3.3.orig/configure
++++ mawk-1.3.3/configure
 @@ -1,26 +1,684 @@
  #! /bin/sh
 -
@@ -2262,13 +2262,17 @@ Index: mawk/configure
  
  
  
-@@ -415,35 +2078,46 @@
+@@ -413,37 +2076,47 @@
+ test "${MANEXT+set}" = set || MANEXT="1"
+ 
  echo "$USER_DEFINES" >> defines.out
- # Extract the first word of "gcc", so it can be a program name with args.
- set dummy gcc; ac_word=$2
+-# Extract the first word of "gcc", so it can be a program name with args.
+-set dummy gcc; ac_word=$2
 -echo $ac_n "checking for $ac_word""... $ac_c" 1>&6
 -if eval "test \"`echo '$''{'ac_cv_prog_CC'+set}'`\" = set"; then
 -  echo $ac_n "(cached) $ac_c" 1>&6
++# Extract the first word of "", so it can be a program name with args.
++set dummy ; ac_word=$2
 +{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 +$as_echo_n "checking for $ac_word... " >&6; }
 +if ${ac_cv_prog_CC+:} false; then :
@@ -2291,16 +2295,16 @@ Index: mawk/configure
 +  test -z "$as_dir" && as_dir=.
 +    for ac_exec_ext in '' $ac_executable_extensions; do
 +  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-+    ac_cv_prog_CC="gcc"
++    ac_cv_prog_CC=""
 +    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
 +    break 2
 +  fi
 +done
    done
 -  IFS="$ac_save_ifs"
+-  test -z "$ac_cv_prog_CC" && ac_cv_prog_CC="cc"
 +IFS=$as_save_IFS
 +
-   test -z "$ac_cv_prog_CC" && ac_cv_prog_CC="cc"
  fi
  fi
 -CC="$ac_cv_prog_CC"
@@ -2326,7 +2330,7 @@ Index: mawk/configure
  else
    cat > conftest.c <<EOF
  #ifdef __GNUC__
-@@ -451,1018 +2125,1644 @@
+@@ -451,1018 +2124,1644 @@
  #endif
  EOF
  if ${CC-cc} -E conftest.c 2>&5 | egrep yes >/dev/null 2>&1; then
@@ -2858,7 +2862,8 @@ Index: mawk/configure
 +done
 +test "$ac_cv_exeext" = no && ac_cv_exeext=
 +
-+else
+ else
+-  echo "$ac_t""no" 1>&6
 +  ac_file=''
 +fi
 +if test -z "$ac_file"; then :
@@ -3368,8 +3373,7 @@ Index: mawk/configure
 +rm -f conftest.i conftest.err conftest.$ac_ext
 +if $ac_preproc_ok; then :
 +
- else
--  echo "$ac_t""no" 1>&6
++else
 +  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 +$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
 +as_fn_error $? "C preprocessor \"$CPP\" fails sanity check
@@ -4787,7 +4791,7 @@ Index: mawk/configure
  #include <values.h>
  #include <stdio.h>
  int main()
-@@ -1473,25 +3773,28 @@
+@@ -1473,25 +3772,28 @@
      exit(0) ; return(0) ;
  }
  
@@ -4828,7 +4832,7 @@ Index: mawk/configure
  #include <stdio.h>
  int main()
  { int y ; long yy ;
-@@ -1508,57 +3811,54 @@
+@@ -1508,57 +3810,54 @@
      exit(0) ;
      return 0 ;
   }
@@ -4918,7 +4922,7 @@ Index: mawk/configure
  
  
  
-@@ -1568,7 +3868,7 @@
+@@ -1568,7 +3867,7 @@
  if test -f fpe_check  ; then
     ./fpe_check 2>/dev/null
     status=$?
@@ -4927,7 +4931,7 @@ Index: mawk/configure
     echo fpe_check.c failed to compile 1>&2
     status=100
  fi
-@@ -1576,139 +3876,32 @@
+@@ -1576,139 +3875,32 @@
  case $status in
     0)  ;;  # good news do nothing
     3)      # reasonably good news
@@ -5077,7 +5081,7 @@ Index: mawk/configure
  
  echo  X 'NOINFO_SIGFPE' '1' >> defines.out
     fi
-@@ -1716,390 +3909,115 @@
+@@ -1716,390 +3908,115 @@
  
     1|2|4)   # bad news have to turn off traps
  	    # only know how to do this on systemV and solaris
@@ -5507,7 +5511,7 @@ Index: mawk/configure
  #define TURN_ON_FPE_TRAPS() to handle divide by zero.
  Please report this so I can fix this script to do it automatically.
  EOF
-@@ -2126,7 +4044,7 @@
+@@ -2126,7 +4043,7 @@
  EOF
  # quit or not ???
  ;;
@@ -5516,7 +5520,7 @@ Index: mawk/configure
  rm -f fpe_check  # whew!!
  fi
  # output config.h
-@@ -2146,188 +4064,1172 @@
+@@ -2146,188 +4063,1172 @@
  EOF
  ) | tee config.h
  rm defines.out

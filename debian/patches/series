@@ -5,4 +5,7 @@
 05_-Wall-fixes
 06_parse.y-semicolons
 07_mawktest-check-devfull
+20_overlong-regexps
+21_memcpy-to-memmove
+cross-compile
 autoreconf
