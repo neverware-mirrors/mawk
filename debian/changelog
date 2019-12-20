@@ -1,3 +1,11 @@
+mawk (1.3.3-18) unstable; urgency=medium
+
+  * debian/control:
+    + Take over package maintenance via package salvaging process.
+      (Closes: #945794).
+
+ -- Boyuan Yang <byang@debian.org>  Fri, 20 Dec 2019 09:18:09 -0500
+
 mawk (1.3.3-17) unstable; urgency=low
 
   * debian/patches/cross-compile: fix the wrong invocation of AC_CHECK_PROG()
