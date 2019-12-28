@@ -5,8 +5,8 @@ Maintainer: Boyuan Yang <byang@debian.org>
 Build-Depends: quilt (>= 0.46-7), bison, debhelper (>= 8.9.4)
 Build-Conflicts: byacc
 Standards-Version: 3.9.2
-Vcs-Bzr: http://bzr.debian.org/bzr/users/vorlon/mawk/trunk/
-Vcs-Browser: http://anonscm.debian.org/loggerhead/users/vorlon/mawk/trunk/
+Vcs-Git: https://salsa.debian.org/debian/mawk.git
+Vcs-Browser: https://salsa.debian.org/debian/mawk
 
 Package: mawk
 Architecture: any
