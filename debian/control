@@ -5,6 +5,7 @@ Maintainer: Boyuan Yang <byang@debian.org>
 Build-Depends: bison, debhelper-compat (= 12)
 Build-Conflicts: byacc
 Standards-Version: 4.4.1
+Testsuite: autopkgtest
 Homepage: https://invisible-island.net/mawk/
 Vcs-Git: https://salsa.debian.org/debian/mawk.git
 Vcs-Browser: https://salsa.debian.org/debian/mawk
