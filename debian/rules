@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 %:
-	dh $@ --with quilt
+	dh $@
 
 override_dh_auto_install:
 	dh_auto_install -- BINDIR=$(CURDIR)/debian/mawk/usr/bin \
