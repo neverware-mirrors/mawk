@@ -1,2 +1,2 @@
 Tests: mawktest
-Restrictions: rw-build-tree
+Restrictions: rw-build-tree, allow-stderr
