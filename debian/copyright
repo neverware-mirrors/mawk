@@ -13,8 +13,8 @@ Modifications for Debian GNU/Linux Copyright (C) 1995-96 Chris Fearnley.
 Modifications for Debian GNU/Linux Copyright (C) 1998-2003 James Troup.
 
 Further modifications up to mawk 1.3.4.20190203 is of:
-Copyright © 2009-2018,2019 by Thomas E. Dickey. The source code is taken
-from https://invisible-island.net/mawk/ .
+Copyright © 2009-2018,2019,2020 by Thomas E. Dickey. The source code is
+taken from https://invisible-island.net/mawk/ .
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License version 2 as published
