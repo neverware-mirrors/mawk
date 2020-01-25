@@ -2,7 +2,7 @@ Source: mawk
 Section: interpreters
 Priority: required
 Maintainer: Boyuan Yang <byang@debian.org>
-Build-Depends: bison, debhelper-compat (= 12)
+Build-Depends: bison, debhelper-compat (= 12), autoconf-dickey
 Build-Conflicts: byacc
 Standards-Version: 4.4.1
 Testsuite: autopkgtest
