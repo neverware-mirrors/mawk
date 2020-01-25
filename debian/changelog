@@ -11,6 +11,8 @@ mawk (1.3.4.20190203-1~exp1) experimental; urgency=medium
     + Update the pre-depends field and use ${misc:Pre-Depends}
       instead.
   * debian/copyright: Refresh information.
+  * debian/: Lintian warning fixes:
+    - description-synopsis-starts-with-article
 
   [ Adreas Henriksson ]
   * debian/patches: Review and drop all obsolete patches.
@@ -19,7 +21,7 @@ mawk (1.3.4.20190203-1~exp1) experimental; urgency=medium
     autoconf. This is required for mawk and other programs
     maintained upstream by Dickey.
 
- -- Boyuan Yang <byang@debian.org>  Sat, 25 Jan 2020 17:36:29 -0500
+ -- Boyuan Yang <byang@debian.org>  Sat, 25 Jan 2020 17:50:25 -0500
 
 mawk (1.3.3-19) unstable; urgency=high
 
