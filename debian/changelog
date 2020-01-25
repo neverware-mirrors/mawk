@@ -8,9 +8,18 @@ mawk (1.3.4.20190203-1~exp1) experimental; urgency=medium
   * debian/control:
     + Declare autopkgtest as test suite. (Closes: #692662)
     + Bump Standards-Version to 4.5.0.
-  * debian/patches: Review and drop all obsolete patches.
+    + Update the pre-depends field and use ${misc:Pre-Depends}
+      instead.
+  * debian/copyright: Refresh information.
 
- -- Boyuan Yang <byang@debian.org>  Sat, 25 Jan 2020 16:58:07 -0500
+  [ Adreas Henriksson ]
+  * debian/patches: Review and drop all obsolete patches.
+  * Fix up autopkgtest for new version of mawktest.
+  * debian/control: Use autoconf-dickey instead of mainline
+    autoconf. This is required for mawk and other programs
+    maintained upstream by Dickey.
+
+ -- Boyuan Yang <byang@debian.org>  Sat, 25 Jan 2020 17:36:29 -0500
 
 mawk (1.3.3-19) unstable; urgency=high
 
