@@ -1,5 +1,16 @@
+# $MawkId: wfrq0.awk,v 1.3 2020/01/20 11:52:06 tom Exp $
+# Test-script for MAWK
+###############################################################################
+# copyright 1993, Michael D. Brennan
+#
+# This is a source file for mawk, an implementation of
+# the AWK programming language.
+#
+# Mawk is distributed without warranty under the terms of
+# the GNU General Public License, version 2, 1991.
+###############################################################################
 
-#   this program finds the twenty most freq
+#   this program finds the twenty most frequent
 #   words in document using a heap sort at the end
 #
 #
@@ -52,7 +63,7 @@ for( i in cnt )
   if ( ++j == 21 )  break ;
 }
 
-# make some sentinals
+# make some sentinels
 for( i = j ; i < 43 ; i++ )  heap[i] = BIG
 
 h_empty = j  # save the first empty slot

@@ -1,6 +1,6 @@
-
 /********************************************
 jmp.h
+copyright 2009,2010 Thomas E. Dickey
 copyright 1991, Michael D. Brennan
 
 This is a source file for mawk, an implementation of
@@ -10,7 +10,9 @@ Mawk is distributed without warranty under the terms of
 the GNU General Public License, version 2, 1991.
 ********************************************/
 
-/* $Log: jmp.h,v $
+/*
+ * $MawkId: jmp.h,v 1.5 2010/12/10 17:00:00 tom Exp $
+ * @Log: jmp.h,v @
  * Revision 1.2  1995/04/21  14:20:19  mike
  * move_level variable to fix bug in arglist patching of moved code.
  *
@@ -23,23 +25,25 @@ the GNU General Public License, version 2, 1991.
  * Revision 5.1  1991/12/05  07:59:24  brennan
  * 1.1 pre-release
  *
-*/
+ */
 
-#ifndef   JMP_H
-#define   JMP_H
+#ifndef   MAWK_JMP_H
+#define   MAWK_JMP_H
 
-void  PROTO(BC_new, (void) ) ;
-void  PROTO(BC_insert, (int, INST*) ) ;
-void  PROTO(BC_clear, (INST *, INST *) ) ;
-void  PROTO(code_push, (INST *, unsigned, int, FBLOCK*) ) ;
-unsigned  PROTO(code_pop, (INST *) ) ;
-void  PROTO(code_jmp, (int, INST *) ) ;
-void  PROTO(patch_jmp, (INST *) ) ;
+#include "types.h"
+#include "symtype.h"
 
-extern int code_move_level ;
+void BC_new(void);
+void BC_insert(int, INST *);
+void BC_clear(INST *, INST *);
+void code_push(INST *, unsigned, int, FBLOCK *);
+unsigned code_pop(INST *);
+void code_jmp(int, INST *);
+void patch_jmp(INST *);
+
+extern int code_move_level;
    /* used to as one part of unique identification of context when
       moving code.  Global for communication with parser.
-   */
+    */
 
-#endif  /* JMP_H  */
-
+#endif /* MAWK_JMP_H  */
