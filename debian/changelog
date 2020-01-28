@@ -1,3 +1,9 @@
+mawk (1.3.4.20200120-1) unstable; urgency=medium
+
+  * Upload to unstable. 
+
+ -- Boyuan Yang <byang@debian.org>  Tue, 28 Jan 2020 11:27:10 -0500
+
 mawk (1.3.4.20200120-1~exp1) experimental; urgency=medium
 
   * New upstream release snapshot.
